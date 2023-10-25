@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
@@ -34,7 +32,7 @@ public class InputController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.X))
         {
             _player._isShoot = true;
             return;

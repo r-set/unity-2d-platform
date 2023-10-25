@@ -52,7 +52,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 543c79560da02b645a0b18524845595e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -186,5 +186,7 @@ MonoBehaviour:
   enemyMoveSpeed: 2
   distanceCheckGround: 2
   rayDistance: 3
+  _patrolEnemy: []
   player: {fileID: 556256983914039907, guid: 7251ea259c0b21e46ae1f3d621b9c0de, type: 3}
+  coinPrefab: {fileID: 5926822959119964962, guid: a0ff7ac872dd002469bdd52faeaa6cfa, type: 3}
   _enemyStatic: 0

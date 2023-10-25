@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +7,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float distanceCheckGround = 2f;
     [SerializeField] private float rayDistance = 3f;
 
+    [SerializeField] private List<float> _patrolEnemy;
     [SerializeField] Transform player;
-    [SerializeField] private bool _enemyStatic;
+    [SerializeField] private GameObject coinPrefab;
+    [SerializeField] public bool _enemyStatic;
 
     [HideInInspector] private LayerMask _layerMask;
     [HideInInspector] private LayerMask _playerMask;
@@ -20,6 +21,9 @@ public class Enemy : MonoBehaviour
 
     private bool _isGrounded = true;
     private bool _visiblePlayer;
+    private int index;
+    private bool _facingLeft = true;
+    //private Vector3 _lastPlayerPosition;
 
     private void Start()
     {
@@ -36,6 +40,11 @@ public class Enemy : MonoBehaviour
         Death();
     }
 
+    private void FixedUpdate()
+    {
+        ChoisePatrolPoint();
+    }
+
      private void Attack()
     {
         if (_enemyStatic)
@@ -48,6 +57,7 @@ public class Enemy : MonoBehaviour
             _visiblePlayer = Physics2D.Raycast(transform.position, Vector2.left, rayDistance, _playerMask);
             Move();
         }
+
     }
 
     private void Move()
@@ -56,8 +66,45 @@ public class Enemy : MonoBehaviour
         {
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = new Vector2(direction.x * enemyMoveSpeed, rb.velocity.y);
+
+            Debug.Log(direction.x);
         }
     }
+
+    private void Flip()
+    {
+        _facingLeft = !_facingLeft;
+        Vector3 playerScale = transform.localScale;
+        playerScale.x *= -1;
+        transform.localScale = playerScale;
+    }
+
+    private void ChoisePatrolPoint()
+    {
+        if (!_visiblePlayer && !_enemyStatic)
+        { 
+            for (int i = 0; i < _patrolEnemy.Count; i++)
+            {
+                if (transform.position.x == _patrolEnemy[i])
+                {
+                    index = i > 0 ? 0 : 1;
+
+                    Flip();
+                }
+            }
+
+            Patrol(index);
+        }
+    }
+
+    private void Patrol(int currentPointIndex)
+    {
+        var position = new Vector2(_patrolEnemy[currentPointIndex], transform.position.y);
+        var currentPosition = rb.position;
+        Vector2 newPosition = Vector2.MoveTowards(currentPosition, position, enemyMoveSpeed * Time.deltaTime);
+        rb.MovePosition(newPosition);
+    }
+
 
     private void GroundCheck()
     {
@@ -76,6 +123,24 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Vector2.left * rayDistance);
         Gizmos.DrawRay(transform.position, Vector2.down * distanceCheckGround);
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        Vector2 collPosition = coll.transform.position;
+
+        if (collPosition.y > transform.position.y && !_enemyStatic)
+        {
+            if (coll.otherCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+            {
+                var coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+
+                if (coin != null)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
     }
 
     private void Death()

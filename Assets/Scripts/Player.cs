@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -12,12 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private int extraJump = 1;
     [SerializeField] private float distanceCheckGround = 0.7f;
 
+    [HideInInspector] public float _moveX;
     [HideInInspector] private LayerMask _layerMask;
 
     BulletPoolManager _bulletPoolManager;
 
     Rigidbody2D rb;
-    [HideInInspector] public float _moveX;
     Animator animator;
     RaycastHit2D hit;
     CapsuleCollider2D bodyCollider;
@@ -134,4 +131,5 @@ public class Player : MonoBehaviour
             }
         }
     }
+
 }

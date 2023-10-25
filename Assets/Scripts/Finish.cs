@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,9 +5,9 @@ public class Finish : MonoBehaviour
 {
     [SerializeField] float loadDelay = 1f;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Invoke("ReloadScene", loadDelay);
         }

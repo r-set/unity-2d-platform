@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class SpringBoard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Animator animator;
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D coll)
     {
-        
+        Vector2 collPosition = coll.transform.position;
+
+        if (collPosition.y < transform.position.y)
+        {
+            if (coll.otherCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
+            {
+
+                animator.SetBool("isUp", true);
+            }
+            else
+            {
+                animator.SetBool("isUp", false);
+            }
+        }
     }
 }

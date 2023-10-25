@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561713138930736492}
   - component: {fileID: 4042781765475977879}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 556256983914039907}
   - component: {fileID: 4414959653243695897}
   - component: {fileID: 287620656940733112}
-  - component: {fileID: 8988885229320416259}
   - component: {fileID: 4208595640350035521}
   - component: {fileID: 4605325449742345167}
   - component: {fileID: 4029875497667956371}
@@ -186,41 +185,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0058956146, y: 0.0031508803}
   m_Size: {x: 0.6296959, y: 1.3310362}
   m_Direction: 0
---- !u!58 &8988885229320416259
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8825828082509699602}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.001868248, y: 0.19795024}
-  serializedVersion: 2
-  m_Radius: 0.4760008
 --- !u!114 &4208595640350035521
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -197,4 +197,5 @@ MonoBehaviour:
   distanceCheckGround: 2
   rayDistance: 3
   player: {fileID: 556256983914039907, guid: 7251ea259c0b21e46ae1f3d621b9c0de, type: 3}
+  coinPrefab: {fileID: 5926822959119964962, guid: a0ff7ac872dd002469bdd52faeaa6cfa, type: 3}
   _enemyStatic: 1
